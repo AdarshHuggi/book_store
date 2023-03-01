@@ -1,0 +1,29 @@
+#Activate env
+ENV_name\Scripts\activate.bat
+
+#create the project django
+django-admin startproject projectname
+
+#Creating the app in side the project
+python manage.py startapp book_outlet 
+
+inside the project to create the dbsqlite file 
+python manage.py migrate
+
+#to update the changes 
+python manage.py makemigrations
+
+#after adding model class to create the table you need add to app name in installed apps setting.py in project
+
+#lets play with data base using "python manage.py shell"
+from book_outlet.models import Book
+Harry_potter =Book(title="Harry potter 1- The Philospher's Stone",rating=5, year=2008)
+this is just just create object keeps it 
+Harry_potter.save()
+Every object has save method, when you run this it store the data to database
+
+#getting all the entries we inserted now 
+we can get the using the class name 
+Book.objects
+Book.objects.all()  
+
