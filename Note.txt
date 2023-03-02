@@ -27,3 +27,46 @@ we can get the using the class name
 Book.objects
 Book.objects.all()  
 
+To delete the data from data base using shell
+Harry_potter=Book.objects.all()[0] # you will get the title of the book
+
+Harry_potter.delete()  # it deletes harry_poter book data in data base 
+
+Book.objects.create(title='Money',author='Anna',is_bestselling=False) # we can use the create the books 
+
+#to get the single book
+Book.objects.get(id=2)
+Book.objects.get(rating=5) # get function will get only unique values, if column have duplicate or multiple data values will get error
+
+#filtering the data in cell
+Book.objects.filter(rating=5)  # it provide the list of filtered values
+
+Book.objects.filter(rating_li=5,title__contains="story")
+
+from django.db.models import Q
+#it allows filter the or  
+Book.objects.filter(rating_li=5,title__contains="story")
+Book.bojects.filter(Q(rating__lt=3) | Q(is_bestselling=True),Q(author="J.K. Rowling"))
+
+Bestsellers=Book.objects.filter(is_bestselling=True) #filter an object again it will create object, it won't reach the database
+amzing_bestseller=Bestsellers.filter(rating__gt=4)
+
+---->models.py
+
+def get_absolute_url(self):
+    """
+    This inbuilt function loads the data object models of  class
+    """
+    return reverse("book-detail", args=[self.id])
+    
+
+
+
+<li> <a href="{% url "book-detail" book.id %}">{{book.title}}  (rating:{{book.rating}})</li>
+#instead of url we can use the get absolute url function 
+<li> <a href="{% book.get_absolute_url %}">{{book.title}}  (rating:{{book.rating}})</li>
+
+
+
+
+
