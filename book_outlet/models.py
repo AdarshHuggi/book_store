@@ -11,6 +11,11 @@ class Country(models.Model):
     def __str__(self):
         return f"{self.name} {self.code}"
 
+    class Meta:
+        #this class is used to add the correct spell of the plurals in admin panel
+        # it shows instead Countrys table to Country Entries in admin panel but Country will be there in database
+        verbose_name_plural = "Countries"
+
  
 
 class Address(models.Model):
@@ -55,7 +60,7 @@ class Book(models.Model):
     year =models.IntegerField()
     is_bestselling=models.BooleanField(default=False)
     slug= models.SlugField(default="",blank =True,editable =True, null=False, db_index=True)# harry-potter-1  format
-    published_countries =models.ManyToManyField(Country)    
+    published_countries =models.ManyToManyField(Country,null=False)    
 
 
 
