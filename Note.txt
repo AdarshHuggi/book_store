@@ -1,5 +1,6 @@
 #Activate env
 ENV_name\Scripts\activate.bat
+django-env\Scripts\activate.bat 
 
 #create the project django
 django-admin startproject projectname
@@ -67,6 +68,23 @@ def get_absolute_url(self):
 <li> <a href="{% book.get_absolute_url %}">{{book.title}}  (rating:{{book.rating}})</li>
 
 
+
+Create super user admin login page
+
+python manage.py createsuperuser
+
+
+TO mangae the data in admin portal we need to add the code admin.py file 
+
+#delete all the books from database using django shell
+> from book_outlet.models import Book
+>>> Book.objects.all().delete()
+Query for books
+
+from book_outlet.models import Book,Author
+jk =Author.objects.get(first_name="J.K")
+jk.books.all()
+jk.books.get(title="harry potter 1")
 
 
 
